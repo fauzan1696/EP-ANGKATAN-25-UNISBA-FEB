@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Profil Resmi Angkatan 25 - Ekonomi Pembangunan, Fakultas Ekonomi dan Bisnis, Universitas Islam Bandung" />
+  <title>Angkatan 25 — Ekonomi Pembangunan UNISBA</title>
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════ INTRO ANIMATION ═══════════════════════════ -->
+  <!--
+    Intro overlay yang tampil pertama kali website dibuka.
+    Menampilkan animasi nama angkatan dengan slide-up + fade.
+    Auto-dismiss setelah 3 detik, lalu loader progress bar muncul.
+  -->
+  <div class="intro-overlay" id="introOverlay" aria-hidden="true">
+    <div class="intro-inner">
+      <div class="intro-badge">Profil Resmi</div>
+      <div class="intro-name">
+        <span class="intro-word" id="introWord1">ANGKATAN</span>
+        <span class="intro-num" id="introWord2">25</span>
+      </div>
+      <div class="intro-line"></div>
+      <div class="intro-sub">Ekonomi Pembangunan &nbsp;·&nbsp; FEB UNISBA</div>
+    </div>
+    <div class="intro-corner intro-corner--tl"></div>
+    <div class="intro-corner intro-corner--tr"></div>
+    <div class="intro-corner intro-corner--bl"></div>
+    <div class="intro-corner intro-corner--br"></div>
+  </div>
+
+  <!-- ═══════════════════════════ LOADER ═══════════════════════════ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-line"></div>
+      <div class="loader-text">ANGKATAN <span>25</span></div>
+      <div class="loader-sub">Ekonomi Pembangunan · UNISBA</div>
+      <div class="loader-progress"><div class="loader-bar" id="loaderBar"></div></div>
+      <div class="loader-percent" id="loaderPercent">0%</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ FLOATING ELEMENTS ═══════════════════════════ -->
+  <!--
+    Elemen dekorasi melayang — subtle, elegan, tidak mengganggu UX.
+    Gunakan simbol islami / akademik yang relevan dengan konteks.
+  -->
+  <div class="floating-elements" aria-hidden="true">
+    <span class="float-el fe-1">✦</span>
+    <span class="float-el fe-2">◆</span>
+    <span class="float-el fe-3">✦</span>
+    <span class="float-el fe-4">◇</span>
+    <span class="float-el fe-5">✦</span>
+    <span class="float-el fe-6">◆</span>
+  </div>
+
+  <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-brand">
+      <span class="brand-roman">EP</span>
+      <span class="brand-divider">·</span>
+      <span class="brand-year">25</span>
+    </div>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#members">Members</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-menu" id="navMenu" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="#about" class="mobile-link">About</a></li>
+      <li><a href="#gallery" class="mobile-link">Gallery</a></li>
+      <li><a href="#members" class="mobile-link">Members</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════ MUSIC PLAYER ═══════════════════════════ -->
+  <div class="music-player" id="musicPlayer" role="region" aria-label="Music player">
+    <button class="music-btn" id="musicBtn" aria-label="Toggle background music">
+      <svg id="iconPlay" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+      </svg>
+      <svg id="iconMute" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="9" y="8" width="2" height="8" fill="currentColor"/>
+        <rect x="13" y="8" width="2" height="8" fill="currentColor"/>
+      </svg>
+    </button>
+    <div class="music-wave" id="musicWave" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <!--
+      MUSIK: Letakkan file .mp3 di assets/music/
+      Ubah src sesuai nama file: assets/music/nama-lagu.mp3
+    -->
+    <audio id="bgMusic" loop preload="none">
+      <source src="assets/music/Kereta Kencan.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <!-- ═══════════════════════════ HERO (VIDEO) ═══════════════════════════ -->
+  <!--
+    Hero menggunakan video sebagai background.
+    VIDEO: Letakkan file di assets/videos/hero.mp4
+    Ganti src pada elemen <source> di bawah.
+    Fallback: jika video gagal load, background color gelap tetap terlihat baik.
+  -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <video
+        class="hero-video"
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="assets/images/ak3.jpeg"
+        aria-hidden="true"
+      >
+        <!--
+          GANTI: ubah src sesuai nama file video kamu.
+          Format MP4 (H.264) paling kompatibel untuk semua browser.
+          Simpan di: assets/videos/hero.mp4
+        -->
+        <source src="assets/videos/hero.mp4" type="video/mp4" />
+        <!-- Fallback jika video tidak didukung -->
+        <img src="assets/images/ak3.jpeg" alt="Hero background" class="hero-img-fallback" />
+      </video>
+      <div class="hero-overlay"></div>
+      <!-- Partikel dekorasi -->
+      <div class="particle p1" aria-hidden="true"></div>
+      <div class="particle p2" aria-hidden="true"></div>
+      <div class="particle p3" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-label reveal-up" style="animation-delay:.3s">Profil Resmi</p>
+      <h1 class="hero-title reveal-up" style="animation-delay:.55s">
+        ANGKATAN<br/><em>25</em>
+      </h1>
+      <div class="hero-divider reveal-up" style="animation-delay:.8s"></div>
+      <p class="hero-sub reveal-up" style="animation-delay:.95s">
+        Ekonomi Pembangunan &nbsp;·&nbsp; FEB UNISBA
+      </p>
+      <p class="hero-tagline reveal-up" style="animation-delay:1.15s">
+        "Membangun Generasi Ekonom yang Berintegritas, Berdaya Saing, dan Berakhlak Mulia."
+      </p>
+      <a href="#about" class="hero-cta reveal-up" style="animation-delay:1.4s">
+        <span>Discover</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">— Tentang Kami —</span>
+        <h2 class="section-title">Angkatan <em>Dua Puluh Lima</em></h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-image fade-in">
+          <div class="about-img-wrap">
+            <img src="assets/images/ak5.jpeg" alt="Angkatan 25 UNISBA bersama" loading="lazy" />
+            <div class="about-img-border"></div>
+          </div>
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-num" data-target="25">0</span>
+              <span class="stat-label">Mahasiswa</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="2025">0</span>
+              <span class="stat-label">Tahun Masuk</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="1">0</span>
+              <span class="stat-label">Visi Bersama</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text fade-in">
+          <p class="about-opening">
+            Kami adalah <strong>Angkatan 25</strong>, generasi mahasiswa Program Studi Ekonomi Pembangunan Universitas Islam Bandung yang menapaki jalan akademik dengan penuh semangat dan keyakinan.
+          </p>
+          <p>
+            Berdiri di atas fondasi nilai-nilai Islam yang kokoh, kami hadir sebagai insan akademik yang tidak hanya berorientasi pada capaian intelektual semata, melainkan juga pada pembentukan karakter yang luhur, bertanggung jawab, dan berdedikasi terhadap kemajuan bangsa.
+          </p>
+          <p>
+            Fakultas Ekonomi dan Bisnis UNISBA telah menjadi wadah kami dalam mendalami ilmu ekonomi pembangunan—sebuah disiplin yang menuntut ketajaman analisis, kepekaan sosial, dan visi jangka panjang yang melampaui batas-batas konvensional.
+          </p>
+          <div class="about-quote">
+            <blockquote>
+              "Ilmu tanpa amal adalah pohon tanpa buah."
+            </blockquote>
+            <cite>— Nilai Dasar Angkatan 25</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ GALLERY ═══════════════════════════ -->
+  <!--
+    Gallery menggunakan CSS Grid dengan Masonry-style layout.
+    Mix portrait (tall) + landscape (wide) untuk variasi visual.
+    Ganti path gambar sesuai file di assets/images/
+  -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">— Galeri —</span>
+        <h2 class="section-title">Momen <em>Berharga</em></h2>
+      </div>
+
+      <div class="gallery-masonry fade-in">
+
+        <!-- Kolom 1 -->
+        <div class="gallery-col">
+          <!-- Portrait (tall) -->
+          <div class="gallery-item">
+            <div class="gallery-inner">
+              <img src="assets/images/ak11.jpeg" alt="Orientasi Mahasiswa Baru" loading="lazy" />
+              <div class="gallery-hover">
+                <span class="gallery-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <p>Orientasi Mahasiswa Baru</p>
+              </div>
+            </div>
+          </div>
+          <!-- Landscape (shorter) -->
+          <div class="gallery-item landscape">
+            <div class="gallery-inner">
+              <img src="assets/images/ak4.jpeg" alt="Kebersamaan Angkatan" loading="lazy" />
+              <div class="gallery-hover">
+                <span class="gallery-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <p>Kebersamaan Angkatan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom 2 (tengah — lebih tinggi) -->
+        <div class="gallery-col col-tall">
+          <!-- Landscape -->
+          <div class="gallery-item landscape">
+            <div class="gallery-inner">
+              <img src="assets/images/ak8.jpeg" alt="Diskusi Akademik" loading="lazy" />
+              <div class="gallery-hover">
+                <span class="gallery-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <p>Diskusi Akademik</p>
+              </div>
+            </div>
+          </div>
+          <!-- Portrait (tall) -->
+          <div class="gallery-item">
+            <div class="gallery-inner">
+              <img src="assets/images/ak1.jpeg" alt="Foto Angkatan Pria" loading="lazy" />
+              <div class="gallery-hover">
+                <span class="gallery-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <p>Foto Angkatan Pria</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom 3 -->
+        <div class="gallery-col">
+          <!-- Landscape -->
+          <div class="gallery-item landscape">
+            <div class="gallery-inner">
+              <img src="assets/images/ak7.jpeg" alt="Barak Ekonomi" loading="lazy" />
+              <div class="gallery-hover">
+                <span class="gallery-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <p>Barak Ekonomi</p>
+              </div>
+            </div>
+          </div>
+          <!-- Portrait -->
+          <div class="gallery-item">
+            <div class="gallery-inner">
+              <img src="assets/images/ak2.jpeg" alt="Aktivitas Kampus" loading="lazy" />
+              <div class="gallery-hover">
+                <span class="gallery-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <p>Aktivitas Kampus</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Video Section dalam Gallery -->
+      <div class="gallery-video fade-in">
+        <div class="video-wrap">
+          <!--
+            VIDEO GALERI: Taruh file di assets/videos/gallery.mp4
+            Ganti src sesuai nama file kamu.
+          -->
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/images/ak11.jpeg">
+            <source src="assets/videos/gallery.mp4" type="video/mp4" />
+          </video>
+          <div class="video-overlay">
+            <span class="video-label">Kenangan Bersama</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ MEMBERS ═══════════════════════════ -->
+  <section class="members section" id="members">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">— Anggota —</span>
+        <h2 class="section-title">Wajah <em>Angkatan 25</em></h2>
+      </div>
+
+      <!-- Filter -->
+      <div class="members-filter fade-in" role="group" aria-label="Filter anggota">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="pengurus">Pengurus</button>
+        <button class="filter-btn" data-filter="anggota">Anggota</button>
+      </div>
+
+      <div class="members-grid fade-in" id="membersGrid">
+        <!-- Card 1 — Ketua Angkatan -->
+        <div class="member-card" data-role="pengurus">
+          <div class="card-img">
+            <img src="assets/images/ak9.png" alt="Bung Zizan — Ketua Angkatan" loading="lazy" />
+            <div class="card-overlay">
+              <a href="https://instagram.com/bung_zizan" target="_blank" rel="noopener noreferrer" class="card-ig" aria-label="Instagram Bung Zizan">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-role">Ketua Angkatan</span>
+            <h3 class="card-name">Bung Zizan</h3>
+            <p class="card-nim">EP · 10090225009</p>
+          </div>
+        </div>
+
+        <!-- Card 2 — Ketua Kelas -->
+        <div class="member-card" data-role="pengurus">
+          <div class="card-img">
+            <img src="assets/images/ak10.jpeg" alt="Kamil Ganteng — Ketua Kelas" loading="lazy" />
+            <div class="card-overlay">
+              <a href="https://instagram.com/fkamilarkara" target="_blank" rel="noopener noreferrer" class="card-ig" aria-label="Instagram Fauzan Kamil">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-role">Ketua Kelas</span>
+            <h3 class="card-name">Kamil Ganteng</h3>
+            <p class="card-nim">EP · 10090225020</p>
+          </div>
+        </div>
+
+        <!-- Card 3 — Bendahara -->
+        <div class="member-card" data-role="pengurus">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Rizky Pratama — Bendahara" loading="lazy" />
+            <div class="card-overlay">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="card-ig" aria-label="Instagram Rizky Pratama">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-role">Bendahara</span>
+            <h3 class="card-name">Rizky Pratama</h3>
+            <p class="card-nim">EP · 2025003</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="member-card" data-role="anggota">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" alt="Nur Aisyah" loading="lazy" />
+            <div class="card-overlay">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="card-ig" aria-label="Instagram Nur Aisyah">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-role">Anggota</span>
+            <h3 class="card-name">Nur Aisyah</h3>
+            <p class="card-nim">EP · 2025004</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="member-card" data-role="anggota">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80" alt="Bagas Satria" loading="lazy" />
+            <div class="card-overlay">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="card-ig" aria-label="Instagram Bagas Satria">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-role">Anggota</span>
+            <h3 class="card-name">Bagas Satria</h3>
+            <p class="card-nim">EP · 2025005</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="member-card" data-role="anggota">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80" alt="Putri Amalia" loading="lazy" />
+            <div class="card-overlay">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="card-ig" aria-label="Instagram Putri Amalia">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-role">Anggota</span>
+            <h3 class="card-name">Putri Amalia</h3>
+            <p class="card-nim">EP · 2025006</p>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="member-card" data-role="anggota">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Deden Firmansyah" loading="lazy" />
+            <div class="card-overlay">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="card-ig" aria-label="Instagram Deden Firmansyah">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-role">Anggota</span>
+            <h3 class="card-name">Deden Firmansyah</h3>
+            <p class="card-nim">EP · 2025007</p>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="member-card" data-role="anggota">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Mega Lestari" loading="lazy" />
+            <div class="card-overlay">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="card-ig" aria-label="Instagram Mega Lestari">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-role">Anggota</span>
+            <h3 class="card-name">Mega Lestari</h3>
+            <p class="card-nim">EP · 2025008</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">— Hubungi Kami —</span>
+        <h2 class="section-title">Tetap <em>Terhubung</em></h2>
+      </div>
+
+      <div class="contact-grid fade-in">
+        <!-- Instagram Angkatan -->
+        <a href="https://instagram.com/ep.dualima" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Instagram Angkatan</span>
+            <span class="contact-value">@ep.dualima</span>
+          </div>
+          <div class="contact-arrow" aria-hidden="true">→</div>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:angkatan25.ep.unisba@gmail.com" class="contact-card">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Email Angkatan</span>
+            <span class="contact-value">angkatan25.ep.unisba@gmail.com</span>
+          </div>
+          <div class="contact-arrow" aria-hidden="true">→</div>
+        </a>
+
+        <!-- Developer -->
+        <a href="https://instagram.com/fkamilarkara" target="_blank" rel="noopener noreferrer" class="contact-card developer">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" stroke-width="1.5"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/></svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Developer Website</span>
+            <span class="contact-value">@fkamilarkara</span>
+          </div>
+          <div class="contact-arrow" aria-hidden="true">→</div>
+        </a>
+      </div>
+
+      <!-- Prodi Info -->
+      <div class="contact-prodi fade-in">
+        <div class="prodi-logo" aria-hidden="true">EP</div>
+        <div class="prodi-detail">
+          <p class="prodi-name">Ekonomi Pembangunan</p>
+          <p class="prodi-faculty">Fakultas Ekonomi dan Bisnis</p>
+          <p class="prodi-uni">Universitas Islam Bandung</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-line"></div>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span>ANGKATAN</span>
+        <em>25</em>
+      </div>
+      <p class="footer-copy">
+        © 2025 Angkatan 25 — Ekonomi Pembangunan, FEB UNISBA. All rights reserved.
+      </p>
+      <p class="footer-dev">
+        Website by&nbsp;
+        <a href="https://instagram.com/fkamilarkara" target="_blank" rel="noopener noreferrer">Fauzan Kamil</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
